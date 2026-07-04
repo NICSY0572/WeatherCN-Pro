@@ -1,0 +1,29 @@
+#!name=WeatherCN Pro
+#!desc=WeatherCN Pro v1.2 iPhone Ready: stable Apple Weather enhancement for Loon with safe fallback to original Apple responses.
+#!author=WeatherCN Pro
+#!homepage=https://github.com/NICSY0572/WeatherCN-Pro
+#!plugin-url=https://raw.githubusercontent.com/NICSY0572/WeatherCN-Pro/main/WeatherCN.plugin
+#!date=2026-07-04
+
+[general]
+skip-proxy = *.qweather.com, api.open-meteo.com, air-quality-api.open-meteo.com, api.weather.gov, weather.cma.cn
+
+[rule]
+DOMAIN-SUFFIX,weather-data.apple.com,DIRECT
+DOMAIN-SUFFIX,weatherkit.apple.com,DIRECT
+DOMAIN-SUFFIX,weather-map.apple.com,DIRECT
+DOMAIN-SUFFIX,qweather.com,DIRECT
+DOMAIN,api.open-meteo.com,DIRECT
+DOMAIN,air-quality-api.open-meteo.com,DIRECT
+DOMAIN,api.weather.gov,DIRECT
+DOMAIN-SUFFIX,cma.cn,DIRECT
+
+[script]
+http-response ^https?:\/\/weather-data\.apple\.com\/.* script-path=https://raw.githubusercontent.com/NICSY0572/WeatherCN-Pro/main/Scripts/weathercn.js, tag=WeatherCNProDataResponse, requires-body=true, binary-body-mode=true, timeout=60, argument="QWEATHER_KEY=&DEBUG=1", enable=true
+http-response ^https?:\/\/weatherkit\.apple\.com\/api\/v1\/weather.* script-path=https://raw.githubusercontent.com/NICSY0572/WeatherCN-Pro/main/Scripts/weathercn.js, tag=WeatherCNProV1WeatherResponse, requires-body=true, binary-body-mode=true, timeout=60, argument="QWEATHER_KEY=&DEBUG=1", enable=true
+http-response ^https?:\/\/weatherkit\.apple\.com\/api\/v2\/weather.* script-path=https://raw.githubusercontent.com/NICSY0572/WeatherCN-Pro/main/Scripts/weathercn.js, tag=WeatherCNProV2WeatherResponse, requires-body=true, binary-body-mode=true, timeout=60, argument="QWEATHER_KEY=&DEBUG=1", enable=true
+http-response ^https?:\/\/weatherkit\.apple\.com\/api\/v1\/availability.* script-path=https://raw.githubusercontent.com/NICSY0572/WeatherCN-Pro/main/Scripts/weathercn.js, tag=WeatherCNProV1AvailabilityResponse, requires-body=true, binary-body-mode=true, timeout=60, argument="QWEATHER_KEY=&DEBUG=1", enable=true
+http-response ^https?:\/\/weatherkit\.apple\.com\/api\/v2\/availability.* script-path=https://raw.githubusercontent.com/NICSY0572/WeatherCN-Pro/main/Scripts/weathercn.js, tag=WeatherCNProV2AvailabilityResponse, requires-body=true, binary-body-mode=true, timeout=60, argument="QWEATHER_KEY=&DEBUG=1", enable=true
+
+[mitm]
+hostname = weather-data.apple.com, weatherkit.apple.com, weather-map.apple.com
