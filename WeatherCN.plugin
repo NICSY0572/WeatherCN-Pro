@@ -19,8 +19,8 @@ DOMAIN,api.weather.gov,DIRECT
 DOMAIN-SUFFIX,cma.cn,DIRECT
 
 [Script]
-http-request ^https:\/\/(weather-data|weatherkit)\.apple\.com\/.* script-path=https://raw.githubusercontent.com/NICSY0572/WeatherCN-Pro/main/Scripts/weathercn.js, timeout=4, tag=WeatherCN Pro Request, argument="QWEATHER_KEY=&DEBUG=0"
-http-response ^https:\/\/(weather-data|weatherkit)\.apple\.com\/.* script-path=https://raw.githubusercontent.com/NICSY0572/WeatherCN-Pro/main/Scripts/weathercn.js, requires-body=true, timeout=4, tag=WeatherCN Pro Response, argument="QWEATHER_KEY=&DEBUG=0"
+http-request ^https:\/\/(weather-data|weatherkit)\.apple\.com\/.* script-path=https://raw.githubusercontent.com/NICSY0572/WeatherCN-Pro/main/Scripts/weathercn.js, timeout=4, tag=WeatherCN Pro Request, argument="QWEATHER_KEY=&DEBUG=1110"
+http-response ^https:\/\/(weather-data|weatherkit)\.apple\.com\/.* script-path=https://raw.githubusercontent.com/NICSY0572/WeatherCN-Pro/main/Scripts/weathercn.js, requires-body=true, timeout=4, tag=WeatherCN Pro Response, argument="QWEATHER_KEY=&DEBUG=1110"
 
 [MITM]
 hostname = weather-data.apple.com, weatherkit.apple.com, weather-map.apple.com
