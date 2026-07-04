@@ -1,0 +1,12 @@
+#!name=WeatherCN Pro
+#!desc=中国版 iPhone 天气增强插件；v1.0 稳定框架版，先完成 WeatherKit 拦截、日志、容错和后续扩展入口。
+#!author=NICSY0572 & GPT
+#!homepage=https://github.com/NICSY0572/WeatherCN-Pro
+#!icon=https://raw.githubusercontent.com/NICSY0572/WeatherCN-Pro/main/icon.png
+
+[MITM]
+hostname = weatherkit.apple.com, weather-data.apple.com
+
+[Script]
+http-response ^https:\/\/weatherkit\.apple\.com\/api\/v1\/weather\/.+ script-path=https://raw.githubusercontent.com/NICSY0572/WeatherCN-Pro/main/weathercn-pro.js, requires-body=true, timeout=20, tag=WeatherCN Pro
+http-response ^https:\/\/weather-data\.apple\.com\/.+ script-path=https://raw.githubusercontent.com/NICSY0572/WeatherCN-Pro/main/weathercn-pro.js, requires-body=true, timeout=20, tag=WeatherCN Pro Data
